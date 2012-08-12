@@ -1,0 +1,32 @@
+/*全局*/
+*{margin:0;padding:0;}
+html,body{background:#353535;font:normal 12px Tahoma; color:#000000;}
+#comment img{padding:20px 0 0 150px;}
+/*盒子*/
+.box{margin-top:5px;background:#FFFFFF;border:4px solid #414141;width:600px;}
+.box-title{font:bold 14px/30px Tahoma;padding-left:15px;background:url(images/box-title-bg.gif) repeat-x;color:#555555;}
+.box-title a{float:right;display:block;margin-right:20px;font:normal 12px arial;text-decoration:none;line-height:30px;color:#666666;}
+/*发布评论*/
+.post{text-align:left;padding:10px;font:normal 12px "微软雅黑","Tahoma";}
+.postuser{font:normal 14px tahoma;width:90px;}
+.posttext{font:normal 14px tahoma;width:400px;height:120px;overflow:auto;}
+.postvalidate{font:normal 14px tahoma;width:90px;}
+.postsubmit{border:1px solid #CDCCB4;background-color: #EFEEE1;font-weight:bold;font-size: 12px;color:#767648;width:60px;margin-right:10px;padding:5px 10px 3px !important;padding:3px 10px 0px;}
+/*评论列表*/
+.comment{margin:5px 10px 10px 10px;text-align:left;border:1px solid #eee;}
+.comment-caption{background:url(images/title-bg.gif);border-bottom:1px solid #eee;line-height:25px;padding-left:10px;}
+.comment-from{font:normal 12px Tahoma;color:#999999;}
+.comment-user{font:bold 12px/24px Tahoma;color:#CC6200;}
+.comment-date{font:normal 10px/24px Arial;color:#555555;}
+.comment-text{padding:5px;font:normal 14px Tahoma;line-height:25px;}
+.comment-reply{padding:1px 5px;background:#353535;font:normal 12px "微软雅黑","Tahoma";line-height:180%;color:#eeeeee}
+/*input修饰*/
+.focus{padding:3px;font-family: Tahoma, Verdana, Sans-Serif;font-size: 12px;border:1px solid #B2D4E8;background:#FFFFFF;color:#0178D9}
+.blur{padding:3px;font-family: tahoma, Verdana, Sans-Serif;font-size: 12px;border:1px solid #ddd;background:#FFFFFF;color:#000}
+/*分页导航*/
+.pagebar{padding:3px;margin:1px 20px;text-align:left;}
+.pagebar a:link{border:1px solid #ccc;background:#FFFFFF;font:normal 10px Arial;padding:3px 6px;margin-right:2px;text-decoration:none;color:#999999;}
+.pagebar a:visited{border:1px solid #ccc;background:#FFFFFF;font:normal 10px Arial;padding:3px 6px;margin-right:2px;text-decoration:none;}
+.pagebar a:hover{color: #008000;border:1px solid #ABCD3A;background:#F2FDDB;}
+.current {font:bold 10px Arial;padding:3px 6px;margin-right:2px;border:1px solid #E8DB97;background:#FFFFDD;color:#AE1B0D}
+.info{border:1px solid #fff;background:#fff;padding:3px 6px;margin-right:2px;color:#999;font:normal 12px Arial;}

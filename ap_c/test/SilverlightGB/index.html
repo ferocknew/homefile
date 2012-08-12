@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=gb2312" />
+<title>留言板</title>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/plu.js"></script>
+<link rel="stylesheet" type="text/css" href="css/style.css" />
+</head>
+<body>
+<div class="box">
+  <div class="box-title">网友评论</div>
+  <div id="comment"><img src="images/Wait.gif" title="数据载入中..." /></div>
+  <!--评论输入框开始-->
+  <div style="padding:4px"></div>
+  <div class="post">
+    <div style="padding:4px"></div>
+    <label>&nbsp;昵&nbsp;&nbsp;&nbsp;称(*)</label>
+    <input type="text" id="CommentUser" onFocus="this.className='focus postvalidate'" onBlur="this.className='blur postvalidate'"  class="blur postuser" value="匿名网友" />
+    <div style="padding:2px"></div>
+    <label>&nbsp;验证码(*)</label>
+    <input type="text" class="blur postvalidate"  id="CommentValidate" onFocus="this.className='focus postvalidate'" onBlur="this.className='blur postvalidate'" maxlength="5" />
+    &nbsp;<img id='CommentValidateImages' style='cursor:pointer;height:23px;width:80px;' src="about:blank" onerror="this.onerror=null;this.src='VerifyCode.aspx?s='+Math.random();" alt="验证码" title="看不清楚?换一张" onClick="src='VerifyCode.aspx?s='+Math.random()"  />
+    <div style="padding:2px"></div>
+    <label>&nbsp;内&nbsp;&nbsp;&nbsp;容(*)</label>
+    <textarea id="CommentText" onFocus="this.className='focus posttext'" onBlur="this.className='blur posttext'" class="blur posttext"></textarea>
+    <div style="padding:2px"></div>
+    <span style="padding-left:60px;">&nbsp;</span>
+    <input type='button' class="postsubmit" id="CommentSubmit" value='提交' onClick="SendComment(1)" />
+    <div style="padding:2px"></div>
+  </div>
+  <!--评论输入框结束-->
+</div>
+<script type="text/javascript">
+//<![CDATA[
+	GetComment(1,1);
+//]]>
+</script>
+</body>
+</html>
