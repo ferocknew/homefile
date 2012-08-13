@@ -1,0 +1,47 @@
+<form name="cross_domain_demo">   
+<input name="title" type="text" value="测试数据">
+</form>   
+
+<a href="javascript:acdr.form('http://www.bbb.com/ajaxcdr-1.0/demo/echo.php', 'POST', 'cross_domain_demo', mycallback);">提交</a>
+<button onclick="g()">get xml</button>
+<button onclick="gjson()">get json</button>
+<button onclick="p()">post</button>
+<button onclick="ajax('POST')">ajax</button>
+<script type="text/javascript" src="../_ajaxcdr.js"></script>
+<script type="text/javascript" src="../jquery.js"></script>
+<script type="text/javascript">  
+FlashHelper.init();
+
+function ajax(type) {
+    ACDR.ajax({
+        url:"http://www.bbb.com/ajaxcdr-1.0/demo/t.php",
+        type:type,
+        data:{a:1,b:2},
+        dataType:"xml",
+        success:function (v) {
+            console.log(v);
+        }
+    });
+}
+function g() {
+    ACDR.get("http://www.bbb.com/ajaxcdr-1.0/demo/a.xml",{a:"this is get data 中要"},function(data){
+        console.log(data);
+    },"xml");
+}
+function gjson() {
+    ACDR.get("http://www.bbb.com/ajaxcdr-1.0/demo/json.php",{a:"this is get data 中要"},function(data){
+        console.log(data);
+    },"json");
+}
+function p() {
+    ACDR.post("http://www.bbb.com/ajaxcdr-1.0/demo/t.php",{a:"this is post data"},function(data){
+        alert(data);
+    });
+}
+
+
+function mycallback(v){   
+    alert(v);   
+}   
+
+</script>   

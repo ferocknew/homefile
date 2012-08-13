@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<PluginInstall>
+ <main>
+  <PluginName>GMailNotifier</PluginName>
+  <PluginTitle>GMail Notifier</PluginTitle>
+  <PluginType>sidebar</PluginType>
+  <PluginHtmlCode><![CDATA[
+  <div id="gmailP">
+    <div id="gmailLoad" style="text-align:center"><img src="Plugins\GMailNotifier\Loading.gif" alt="loading... Mail"/></div>
+  </div>
+  <script type="text/javascript" src="Plugins/GMailNotifier/loading.js"></script>
+  ]]></PluginHtmlCode>
+  <PluginASPCode><![CDATA[]]></PluginASPCode>
+  <PluginPath><![CDATA[]]></PluginPath>
+  <SettingFile></SettingFile>
+  <CreateTableSQL><![CDATA[]]></CreateTableSQL>
+  <UpdateTableSQL><![CDATA[]]></UpdateTableSQL>
+  <DropTable></DropTable>
+  <Author>PuterJam</Author>
+  <pubDate>2006-1-4</pubDate>
+  <About><![CDATA[PJblog GMail Notifier Lite 1.0\n可以在首页显示GMAIL的最新邮件]]></About>
+ </main>
+</PluginInstall>

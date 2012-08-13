@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+</head>
+
+<body>
+<form name="cross_domain_demo" style="display:none">
+<input name="title" type="text" value="测试数据">
+<input name="123" type="text" value="123"><input name="333" type="text" value="333">
+</form>
+<a href="javascript:void(0);" id="show">提交</a>
+<input type="text" id="callback" />
+</body>
+</html>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script type="text/javascript" src="ajaxcdr.js"></script>
+<script type="text/javascript">
+var _url='http://dbo.365pub.com/demo/index.asp';
+
+$("#show").click(function(){
+	AjaxCrossDomainRequest({
+		url:_url,
+		method:'POST',
+		formname:'cross_domain_demo',
+		callback:"mycallback()"
+	});
+})
+
+function mycallback(){
+    alert(AjaxCrossDomainResponse);
+	var _date={sessionid:AjaxCrossDomainResponse};
+	$.ajax({
+			url:_url,
+			dataType:"jsonp",
+			data:_date,
+			success:function(json){
+					$("#callback").val(json.item);
+			}
+		});
+}
+
+
+</script>
