@@ -1,0 +1,47 @@
+﻿
+{$typeid id="3"}
+<hr />
+<ul>
+{$type sql="Select * From [Class] Where typeid=1 order by Rnd(borderid-timer()) " }
+<li>{type.i} : {type.bordername}
+    <ul>
+    {$news sql="Select top 5 * From [News] Where typeid=(type.typeid) order by Rnd(newsid-timer()) " }
+    <li><a href="news.asp?id={news.newsid}">{news.i}、{news.topic} {news.nfrom}</a></li>
+    {/$news}
+    </ul>
+</li>
+{/$type}
+</ul>
+<hr />
+<ul>
+    {$news sql="Select top 5 * From [News] Where typeid in (1,2,3,4) order by Rnd(newsid-timer()) " }
+    <li><a href="news.asp?id={news.newsid}">{news.i}、{news.topic} {news.nfrom}</a></li>
+    {/$news}
+</ul>
+<hr />
+<ul>
+    {$news sql="Select top 5 * From [News] Where typeid in (1,2,3,4) order by Rnd(newsid-timer()) " }
+    <li><a href="news.asp?id={news.newsid}">{news.i}、{news.topic} {news.nfrom}</a></li>
+    {/$news}
+</ul>
+<hr />
+<ul>{$class sql="Select borderid,typeid,bordername From [Class] Where borderid = 1" dr="myclassdata(rs)"}
+    {empty:class}
+    <li>没有分类 {$typeid id="3"} </li>
+    {/empty:class}
+    <li>{class.i} <strong>{class.bordername} - {class.taihom}</strong>
+        <ul>
+        {$type sql="Select * From [Class] Where typeid=(class.borderid) order by Rnd(borderid-timer()) " }
+        <li>{type.i} : {type.bordername}
+            <ul>
+            {$news sql="Select top 5 * From [News] Where typeid=(type.typeid) order by Rnd(newsid-timer()) " }
+            <li><a href="news.asp?id={news.newsid}">{news.i}、{news.topic}</a></li>
+            {/$news}
+            </ul>
+        </li>
+        {/$type}
+        </ul>
+    </li>
+    {/$class}
+</ul>
+<hr />

@@ -1,0 +1,82 @@
+﻿{include("head.html")}
+<hr />
+
+<h4>单标签支持</h4>
+ <p>
+  你好，你的用户名是 {@username sql="1"}
+ </p>
+ <p> 截取字符支持
+  你好，你的用户名是 {@username eval='amyfn("你好")' show=}
+ </p>
+<hr />
+<h4>逻辑块支持</h4>
+ <p> {if @islogin == "1"}
+  你好，你已经登录，你的用户名是 {@username style="asdfasd"}
+  {else}
+  您没有登录！
+  {/if}
+ </p>
+<hr />
+<h4>循环块支持</h4>
+
+<ul>
+<loop:loop1 sql="select * from [table]">
+<li>
+{if (i)>"3"}<strong style=" color:#00F">(i)</strong>{else}<strong style=" color:#90F">(i)</strong>{/if}
+{@username}-(@1 len="4") - (@11 len="10") - (@datetime dateformat="yy年mm月dd日 HH时MM分SS秒")</li>
+{asp myfn("(@1)")}
+<br />
+</loop:loop1>
+</ul>
+{@tagattr} asdf
+<hr />
+<h4>循环逻辑支持</h4>
+<ul>
+<loop:loop2 sql="select * from [table]">
+<li>(loop2.datetime)aaa
+{if (i)>"3"}<strong style=" color:#00F">(i)</strong>{/if} {if (i)<="3"}<strong style=" color:#f00">(i)</strong>{/if} (@1 len="4") -
+ (@11 len="10") - (@datetime dateformat="yy年mm月dd日 星期W")
+{if @username=="taihom"}@username条件成立{else}@username条件不成立{/if}<br />
+
+{if @username==@username1}@username=@username1条件成立{else}@username=@username1条件不成立{/if}
+{if @username!=(@1)}@username!=(\@1){else}@username!=(\@1){/if}
+</li>
+</loop:loop2>
+</ul>
+<hr />
+<h4>循环支持记录为空的自定义模板</h4>
+<ul>
+<loop:loop3 sql="select * from [table] where 1=2">
+<empty>
+<li>很抱歉，没有您要查找的数据！</li>
+</empty>
+<li>
+{if (i)>"3"}<strong style=" color:#00F">(i)</strong>{/if} {if (i)<="3"}<strong style=" color:#f00">(i)</strong>{/if} (@1 len="4") -
+ (@11 len="10") - (@datetime dateformat="yy年mm月dd日 星期W")
+{if @username=="taihom"}@username条件成立{else}@username条件不成立{/if}<br />
+
+{if @username==@username1}@username=@username1条件成立{else}@username=@username1条件不成立{/if}
+{if @username!=(@1)}@username!=(\@1){else}@username!=(\@1){/if}
+</li>
+</loop:loop3>
+
+</ul>
+
+<hr />
+嵌套循环的支持
+<loop:loop4 borderid="3">
+<h4>(@bordername)</h4>
+<ul>
+    <loop:sub data='getnews((@borderid))' memo="在这里调用 getnews 函数来返回嵌套循环的值" showDo='(@borderid)'>
+    <li>(ii)-<a href="./news.asp?id=(sub.newsid)">(sub.topic)</a> ((sub.ntime))</li>
+	</loop:sub>
+</ul>
+</loop:loop4>
+<hr />
+asp函数支持
+现在时间：now()={asp now()}<br />
+自定义函数：myfn("自定义函数")={asp myfn("{@username}")}
+自定义函数：myfn("自定义函数不存在")={asp 2myfn("自定义函数不存在")}
+<hr />
+
+{include(footer.html)}

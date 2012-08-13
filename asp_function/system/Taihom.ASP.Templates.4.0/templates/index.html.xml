@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<template><title len="5" ok="6" ab="7"><attr><![CDATA[ len="5" ok="6" ab="7"]]></attr><html><![CDATA[{cms:title len="5" ok="6" ab="7"}]]></html></title><typeid id="3"><attr><![CDATA[ id="3"]]></attr><html><![CDATA[{cms:typeid id="3"}]]></html></typeid><type nodepath="type" sql="Select * From [Class] Where typeid=1 order by Rnd(borderid-timer()) "><attr><![CDATA[ sql="Select * From [Class] Where typeid=1 order by Rnd(borderid-timer()) " ]]></attr><html><![CDATA[{cms:type sql="Select * From [Class] Where typeid=1 order by Rnd(borderid-timer()) " }
+<li>{type.i} : {type.bordername}
+    <ul>
+    {cms:news sql="Select top 5 * From [News] Where typeid=(type.typeid) order by Rnd(newsid-timer()) " }
+    <li>{news.i}、{news.topic} {news.nfrom}</li>
+    {/cms:news}
+    </ul>
+</li>
+{/cms:type}]]></html><body><![CDATA[
+<li>{type.i} : {type.bordername}
+    <ul>
+    {cms:news sql="Select top 5 * From [News] Where typeid=(type.typeid) order by Rnd(newsid-timer()) " }
+    <li>{news.i}、{news.topic} {news.nfrom}</li>
+    {/cms:news}
+    </ul>
+</li>]]></body><null><![CDATA[]]></null><news nodepath="type/news" sql="Select top 5 * From [News] Where typeid=(type.typeid) order by Rnd(newsid-timer()) "><attr><![CDATA[ sql="Select top 5 * From [News] Where typeid=(type.typeid) order by Rnd(newsid-timer()) " ]]></attr><html><![CDATA[{cms:news sql="Select top 5 * From [News] Where typeid=(type.typeid) order by Rnd(newsid-timer()) " }
+    <li>{news.i}、{news.topic} {news.nfrom}</li>
+    {/cms:news}]]></html><body><![CDATA[
+    <li>{news.i}、{news.topic} {news.nfrom}</li>]]></body><null><![CDATA[]]></null></news></type><news nodepath="news" sql="Select top 5 * From [News] Where typeid in (1,2,3,4) order by Rnd(newsid-timer()) "><attr><![CDATA[ sql="Select top 5 * From [News] Where typeid in (1,2,3,4) order by Rnd(newsid-timer()) " ]]></attr><html><![CDATA[{cms:news sql="Select top 5 * From [News] Where typeid in (1,2,3,4) order by Rnd(newsid-timer()) " }
+    <li>{news.i}、{news.topic} {news.nfrom}</li>
+    {/cms:news}]]></html><body><![CDATA[
+    <li>{news.i}、{news.topic} {news.nfrom}</li>]]></body><null><![CDATA[]]></null></news><news nodepath="news" sql="Select top 5 * From [News] Where typeid in (1,2,3,4) order by Rnd(newsid-timer()) "><attr><![CDATA[ sql="Select top 5 * From [News] Where typeid in (1,2,3,4) order by Rnd(newsid-timer()) " ]]></attr><html><![CDATA[{cms:news sql="Select top 5 * From [News] Where typeid in (1,2,3,4) order by Rnd(newsid-timer()) " }
+    <li>{news.i}、{news.topic} {news.nfrom}</li>
+    {/cms:news}]]></html><body><![CDATA[
+    <li>{news.i}、{news.topic} {news.nfrom}</li>]]></body><null><![CDATA[]]></null></news><class nodepath="class" sql="Select borderid,typeid,bordername From [Class] Where borderid = 1" dr="myclassdata(rs)" borderid=""><attr><![CDATA[ sql="Select borderid,typeid,bordername From [Class] Where borderid = 1" dr="myclassdata(rs)"]]></attr><html><![CDATA[{cms:class sql="Select borderid,typeid,bordername From [Class] Where borderid = 1" dr="myclassdata(rs)"}
+    {empty:class}
+    <li>没有分类 {cms:typeid id="3"} </li>
+    {/empty:class}
+    <li>{class.i} <strong>{class.bordername} - {class.taihom}</strong>
+        <ul>
+        {cms:type sql="Select * From [Class] Where typeid=(class.borderid) order by Rnd(borderid-timer()) " }
+        <li>{type.i} : {type.bordername}
+            <ul>
+            {cms:news sql="Select top 5 * From [News] Where typeid=(type.typeid) order by Rnd(newsid-timer()) " }
+            <li>{news.i}、{news.topic}</li>
+            {/cms:news}
+            </ul>
+        </li>
+        {/cms:type}
+        </ul>
+    </li>
+    {/cms:class}]]></html><body><![CDATA[
+    
+    <li>{class.i} <strong>{class.bordername} - {class.taihom}</strong>
+        <ul>
+        {cms:type sql="Select * From [Class] Where typeid=(class.borderid) order by Rnd(borderid-timer()) " }
+        <li>{type.i} : {type.bordername}
+            <ul>
+            {cms:news sql="Select top 5 * From [News] Where typeid=(type.typeid) order by Rnd(newsid-timer()) " }
+            <li>{news.i}、{news.topic}</li>
+            {/cms:news}
+            </ul>
+        </li>
+        {/cms:type}
+        </ul>
+    </li>]]></body><null><![CDATA[
+    <li>没有分类 {cms:typeid id="3"} </li>
+    ]]></null><typeid id="3"><attr><![CDATA[ id="3"]]></attr><html><![CDATA[{cms:typeid id="3"}]]></html></typeid><type nodepath="class/type" sql="Select * From [Class] Where typeid=(class.borderid) order by Rnd(borderid-timer()) "><attr><![CDATA[ sql="Select * From [Class] Where typeid=(class.borderid) order by Rnd(borderid-timer()) " ]]></attr><html><![CDATA[{cms:type sql="Select * From [Class] Where typeid=(class.borderid) order by Rnd(borderid-timer()) " }
+        <li>{type.i} : {type.bordername}
+            <ul>
+            {cms:news sql="Select top 5 * From [News] Where typeid=(type.typeid) order by Rnd(newsid-timer()) " }
+            <li>{news.i}、{news.topic}</li>
+            {/cms:news}
+            </ul>
+        </li>
+        {/cms:type}]]></html><body><![CDATA[
+        <li>{type.i} : {type.bordername}
+            <ul>
+            {cms:news sql="Select top 5 * From [News] Where typeid=(type.typeid) order by Rnd(newsid-timer()) " }
+            <li>{news.i}、{news.topic}</li>
+            {/cms:news}
+            </ul>
+        </li>]]></body><null><![CDATA[]]></null><news nodepath="class/type/news" sql="Select top 5 * From [News] Where typeid=(type.typeid) order by Rnd(newsid-timer()) "><attr><![CDATA[ sql="Select top 5 * From [News] Where typeid=(type.typeid) order by Rnd(newsid-timer()) " ]]></attr><html><![CDATA[{cms:news sql="Select top 5 * From [News] Where typeid=(type.typeid) order by Rnd(newsid-timer()) " }
+            <li>{news.i}、{news.topic}</li>
+            {/cms:news}]]></html><body><![CDATA[
+            <li>{news.i}、{news.topic}</li>]]></body><null><![CDATA[]]></null></news></type></class><data nodepath="data"><attr><![CDATA[]]></attr><html><![CDATA[{cms:data}
+    <li>{data.i}、{data.borderid} {news.nfrom}{data.bordername} </li>
+    {/cms:data}]]></html><body><![CDATA[
+    <li>{data.i}、{data.borderid} {news.nfrom}{data.bordername} </li>]]></body><null><![CDATA[]]></null></data><data nodepath="data" sql="" name="nnn"><attr><![CDATA[ name="nnn"]]></attr><html><![CDATA[{cms:data name="nnn"}
+    <li>{data.i}、{data.borderid} {news.nfrom}{data.bordername} </li>
+    {/cms:data}]]></html><body><![CDATA[
+    <li>{data.i}、{data.borderid} {news.nfrom}{data.bordername} </li>]]></body><null><![CDATA[]]></null></data><news nodepath="news" sql="Select top 5 * From [News] Where typeid in (1,2,3,4) order by Rnd(newsid-timer()) "><attr><![CDATA[ sql="Select top 5 * From [News] Where typeid in (1,2,3,4) order by Rnd(newsid-timer()) " ]]></attr><html><![CDATA[{cms:news sql="Select top 5 * From [News] Where typeid in (1,2,3,4) order by Rnd(newsid-timer()) " }
+    <li>{news.i}、{news.topic} {news.nfrom}</li>
+    {/cms:news}]]></html><body><![CDATA[
+    <li>{news.i}、{news.topic} {news.nfrom}</li>]]></body><null><![CDATA[]]></null></news><![CDATA[<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{cms:title len="5" ok="6" ab="7"}</title>
+</head>
+
+<body>
+{cms:typeid id="3"}
+<hr />
+<ul>
+{cms:type sql="Select * From [Class] Where typeid=1 order by Rnd(borderid-timer()) " }
+<li>{type.i} : {type.bordername}
+    <ul>
+    {cms:news sql="Select top 5 * From [News] Where typeid=(type.typeid) order by Rnd(newsid-timer()) " }
+    <li>{news.i}、{news.topic} {news.nfrom}</li>
+    {/cms:news}
+    </ul>
+</li>
+{/cms:type}
+</ul>
+<hr />
+<ul>
+    {cms:news sql="Select top 5 * From [News] Where typeid in (1,2,3,4) order by Rnd(newsid-timer()) " }
+    <li>{news.i}、{news.topic} {news.nfrom}</li>
+    {/cms:news}
+</ul>
+<hr />
+<ul>
+    {cms:news sql="Select top 5 * From [News] Where typeid in (1,2,3,4) order by Rnd(newsid-timer()) " }
+    <li>{news.i}、{news.topic} {news.nfrom}</li>
+    {/cms:news}
+</ul>
+<hr />
+<ul>{cms:class sql="Select borderid,typeid,bordername From [Class] Where borderid = 1" dr="myclassdata(rs)"}
+    {empty:class}
+    <li>没有分类 {cms:typeid id="3"} </li>
+    {/empty:class}
+    <li>{class.i} <strong>{class.bordername} - {class.taihom}</strong>
+        <ul>
+        {cms:type sql="Select * From [Class] Where typeid=(class.borderid) order by Rnd(borderid-timer()) " }
+        <li>{type.i} : {type.bordername}
+            <ul>
+            {cms:news sql="Select top 5 * From [News] Where typeid=(type.typeid) order by Rnd(newsid-timer()) " }
+            <li>{news.i}、{news.topic}</li>
+            {/cms:news}
+            </ul>
+        </li>
+        {/cms:type}
+        </ul>
+    </li>
+    {/cms:class}
+</ul>
+<hr />
+
+<hr />
+<ul>
+    {cms:data}
+    <li>{data.i}、{data.borderid} {news.nfrom}{data.bordername} </li>
+    {/cms:data}
+</ul>
+<hr />
+<ul>
+    {cms:data name="nnn"}
+    <li>{data.i}、{data.borderid} {news.nfrom}{data.bordername} </li>
+    {/cms:data}
+</ul>
+<hr />
+<ul>
+    {cms:news sql="Select top 5 * From [News] Where typeid in (1,2,3,4) order by Rnd(newsid-timer()) " }
+    <li>{news.i}、{news.topic} {news.nfrom}</li>
+    {/cms:news}
+</ul>
+<hr />
+</body>
+</html>
+]]></template>
