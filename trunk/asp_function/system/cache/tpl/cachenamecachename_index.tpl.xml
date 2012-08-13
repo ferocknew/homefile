@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<template><doctitle><attr><![CDATA[]]></attr><html><![CDATA[{$doctitle}]]></html></doctitle><username><attr><![CDATA[]]></attr><html><![CDATA[{$username}]]></html></username><name><attr><![CDATA[]]></attr><html><![CDATA[{$name}]]></html></name><data nodepath="data" sql="" name="nnn" dr="myfn(rsArr)"><attr><![CDATA[ name="nnn" dr="myfn(rsArr)"]]></attr><html><![CDATA[{$data name="nnn" dr="myfn(rsArr)"}
+<li>{data.i}、{data.test} {data.name} </li>
+{/$data}]]></html><body><![CDATA[
+<li>{data.i}、{data.test} {data.name} </li>]]></body><null><![CDATA[]]></null></data><![CDATA[<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<h1 align="center">{$doctitle}</h1>
+<div>{$username}</div>
+<div>{$name}</div>
+{$data name="nnn" dr="myfn(rsArr)"}
+<li>{data.i}、{data.test} {data.name} </li>
+{/$data}
+
+<img src="tpl/25.jpg" />]]></template>

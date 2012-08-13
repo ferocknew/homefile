@@ -1,0 +1,1 @@
+ {static : [{ data : "A node",children : [{ data : "Child node 1" },{ data : "Child node 2" },{ data : "Child node 3" }]}]}

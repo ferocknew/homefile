@@ -1,0 +1,52 @@
+﻿.form	{
+	margin:0 auto;
+	padding:5px 0;
+	text-align: center;
+	overflow:hidden;
+}
+.main	{
+	float:left;
+	margin:0 auto;
+	padding:5px 0;
+	text-align: center;
+	width:100%;
+}
+.form p	{
+	float:left;
+	width:49%;
+	margin:0;
+	padding:2px 0;
+	overflow:hidden;
+}
+.form p *{
+	float:left;
+	overflow:hidden;
+	white-space :pre;
+}
+.form label	{
+	width:100px;
+	padding-right:5px;
+	text-align:right;
+}
+.form .msg	{
+	width:180px;
+	_width:;
+	padding-left:5px;
+}
+.botton	{
+	clear:both;
+	padding:5px 0;
+	width:100%;
+	text-align: center;
+}
+.botton input {
+	margin:0 20px;
+	width:100px;
+	padding:3px 0 1px;
+}
+.form textarea {
+	overflow: scroll;
+}
+.none {
+	display:none;
+}

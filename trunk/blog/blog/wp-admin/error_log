@@ -1,0 +1,1 @@
+[17-Dec-2011 19:09:54] PHP Warning:  file_get_contents(http:) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: No such file or directory in /home/ferock/public_html/blog/wp-includes/class-feed.php on line 88

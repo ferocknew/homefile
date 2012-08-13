@@ -1,0 +1,357 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ASP 模板引擎 - 生成静态页面-支持嵌套循环-自定义属性-支持调用 asp函数</title>
+<meta name="keywords" content="ASP 模板引擎" />
+<meta name="description" content="ASP 模板引擎,本类支持单标签，支持简单的逻辑，支持嵌套模板，支持循环列表，支持循环列表的逻辑，支持自定义标签，支持自定义标签属性和自由获取标签……" />
+</head>
+
+<body>
+
+<p>'//ASP 模板引擎 (Taihom.Template.class v3.0)<br />
+  '//Code By Taihom<br />
+  '//Taihom 原创<br />
+  '//版权说明<br />
+  '//本类允许转载、复制和修改，但转载、复制和修改的同时请保留原始的出处和作者声明，这也是对作者Taihom劳动成果的一种尊重！<br />
+'//如果您对本类进行修改，希望您也可以给我发一份您修改过后的类(taihom<span>@</span>163.com)</p>
+<p>本类支持单标签，支持简单的逻辑，支持嵌套模板，支持循环列表,支持嵌套循环，支持调用asp函数，支持循环列表的逻辑，支持自定义标签，支持自定义标签属性和自由获取标签……</p>
+<p>代码在这里下载：<br />
+演示地址：<a href="http://www.taihom.com/templateclass/demo.asp">http://www.taihom.com/templateclass/demo.asp</a><br />
+模板地址：<a href="http://www.taihom.com/templateclass/templates">http://www.taihom.com/templateclass/templates</a><br />
+代码下载：<a href="http://www.taihom.com/templateclass/taihom.template.class.rar">http://www.taihom.com/templateclass/taihom.template.class.rar</a><br />
+</p>
+<p>先看看说明！</p>
+<p>&nbsp;</p>
+<table width="100%" border="1">
+  <tr>
+    <td width="150">&nbsp;</td>
+    <td width="200"><strong>模板类的标签规则</strong></td>
+    <td><strong>说明</strong></td>
+  </tr>
+  <tr>
+    <td><strong>标签边界：</strong></td>
+    <td><strong>{}、()</strong></td>
+    <td>{@}是单标签<br />
+    {}是类标签，主要是应用在{include(&quot;...&quot;)}和{if ...}...{else}...{/if}<br />
+    &lt;loop:name ...&gt;&lt;.../loop:name&gt;循环标签</td>
+  </tr>
+  <tr>
+    <td><strong>包含文件：</strong></td>
+    <td><strong>{include(&quot;文件路径&quot;)}</strong></td>
+    <td><p>该模板类支持包含同模板目录下的文件，例如 <strong>{include(&quot;head.html&quot;)} </strong></p>
+    <p><strong>支持多级include(例如1.html可以include 2.html,2.html可以include 3.html)，但是不能include死循环，否则程序出错</strong></p></td>
+  </tr>
+  <tr>
+    <td><strong>ASP调用标签</strong></td>
+    <td>{asp 函数(参数)}</td>
+    <td><p>v3.0新特性：可以在模板中直接调用asp函数(只要是asp中合法的函数均可调用)，但是要注意的是，使用这个标签调用函数，带参数的情况下要以asp标准带参数，例如传递字符串要用双引号引起来</p>
+    <p>例如 ：{asp now()} 将会得到当前时间</p>
+    <p>如果您在asp里面写有一个自定义函数 myfunction(var1,var2) 在模板中你可以这么调用：{asp myfunction(参数1,参数2)}</p>
+    <p>参数支持本模板的单标签</p></td>
+  </tr>
+  <tr>
+    <td><strong>单标签：</strong></td>
+    <td>{@标签名}<br />
+      {@标签名 属性=&quot;值&quot;}<br />
+    (@字段名)、(@字段下标)</td>
+    <td><p>(@...)单标签只能应用在loop块</p>
+    <p>另外在loop块里的取值还可以使用<strong>(块名.字段名)</strong>来获得</p></td>
+  </tr>
+  <tr>
+    <td><strong>逻辑标签：</strong></td>
+    <td><strong>{if @标签变量==&quot;值&quot;}</strong> 代码块 <strong>{else}</strong> 代码块 <strong>{/if}<br />
+    {if @标签变量==&quot;值&quot;}</strong> 代码块 <strong>{/if}</strong><strong>      </strong></td>
+    <td><p>可以处理一些简单的逻辑关系 ，<br />
+      目前支持的运算符有<strong>==</strong>、<strong>&lt;=</strong>、<strong>&gt;=</strong>、<strong>&gt;</strong>、<strong>&lt;</strong>、<strong>!=</strong>、<strong>&lt;&gt;</strong><br />
+      例如：<strong>{if @islogin==&quot;1&quot;}</strong> 您已经登录 <strong>{else}</strong> 您没有登录！ <strong>{/if}<br />
+    逻辑标签可以应用到循环块中，但是逻辑标签不能跟自己嵌套</strong></p>
+    <p><strong>v2.0开始支持逻辑标签的条件支持，运算符号前后均可支持标签和带属性的标签，<br />
+    这样使得{if @var1==@var2} 或者 {if @var xx='??' == @var1 yy='??'}</strong>得到了充分的支持</p></td>
+  </tr>
+  <tr>
+    <td><strong>循环标签：</strong></td>
+    <td><strong>&lt;loop:name 属性1=&quot;值1&quot; </strong><strong>属性2=&quot;值2&quot; ... </strong><strong>&gt;<br />
+      代码块 （@数字）</strong><strong>（@字段名 属性=&quot;&quot;）</strong><br />
+      <strong>&lt;/loop:name&gt;</strong></td>
+    <td><p> 这里要注意的是 &lt;loop&gt; 标签部分一定要换行之后再写代码块，<br />
+      这里主要设置一个断点，以便模板可以解析到&lt;loop&gt;的参数。<br />
+      被循环块包含着的，我称之为循环体，也就是需要循环输出的部分，<br />
+      一般来说，循环体是用来显示数据用的，这些数据往往都是从数据库直接筛选的结果。<br />
+      所以，<strong>循环体也支持单标签</strong>，只不过循环体的单标签部分的<strong>边界符号是（）</strong><br />
+      单标签的输出方式有两种，一种是&quot;@字段下标，一种是&quot;@字段名&quot;，具体怎么样用，等下例子中会有说明<br />
+      <strong>循环部分也支持逻辑</strong>:用法跟上面的逻辑支持也是一样的。循环部分的逻辑支持获取外部单标签的方法是 @变量 不用()边界符号 例如{if (@fieldname)&gt;@var1} <br />
+      <br />
+      循环块有一个保留属性 name=&quot;块名字&quot; 除了这个，想定义什么自定义属性都可以<br />
+      这个值缺省也是可以的，模板类会自动分配一个name给到&lt;loop&gt;<br />
+      主要是给&lt;loop&gt;一个唯一的命名，在程序中就可以传递数据给这个&lt;loop&gt;</p>
+      <p>如果输出的结果为空，那么如何自定义自己的输出结果呢？很简单，只要在loop标签里面加一个empty标签：例如：</p>
+      <p>&lt;loop3:loop  sql=&quot;select * from [table] where 1=2&quot;&gt;<br />
+        &lt;empty&gt;<br />
+        &lt;li&gt;很抱歉，没有您要查找的数据！&lt;/li&gt;<br />
+        &lt;/empty&gt;<br />
+        &lt;li&gt;显示你的数据 (@1) (@2) (@3) (loop3.name) (@name)&lt;/li&gt;<br />
+        &lt;/loop3:loop&gt;</p>
+      <p><br />
+      </p></td>
+  </tr>
+  <tr>
+    <td><strong>嵌套循环：</strong></td>
+    <td>&lt;loop:name1 &gt;<br />
+...(name1.fields)<br />
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;loop:name2  <strong>data='myfunction((name1.id))'</strong>&gt;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...(name2.name)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/loop:name2&gt;<br />
+&lt;/loop:name1&gt;<br /></td>
+    <td><p>v3.0新特性，3.0版本开始，支持<strong>循环的嵌套</strong>。</p>
+      <p>模板中的代码如左边所示。子循中需要有一个特定的 data属性作为支持。而data属性的作用是调用asp函数,这个asp函数是可以自己定义的，作用是根据传递的参数来返回子循环的数据对象。</p>
+      <p>也就是说，你可以根据你的需要在自定义的函数中构造和筛选子循环的数据。这一点是很灵活的</p>
+      <p>如果没有指定 data 属性，或者 指定的 data属性的函数不存在 或者发生错误，那么内循环是不会工作的。这一点大家要注意。</p>
+      <p><strong> data 返回的数据对象必须是rs数据集的对象</strong>。例如 返回值是 set myfunction=rs</p>
+      <p>使用循环之前提取循环的值用的是标签(@tag)这样的方式来获得。而使用<strong>嵌套循环</strong>后，这个当然也还可以用，但是为了区别显示，我们提供了另外一种数据提取的支持 (循环名.字段名 )<br />
+      例如左边的 <strong>(name1.id)</strong>，(name2.name)分别表示name1循环的id值和name2循环的name值，这样不会取值混乱。</p>
+      <p>另外一个注意的是，嵌套循环不宜用在太大量的数据显示上。</p>
+    <p>&nbsp;</p></td>
+  </tr>
+  <tr>
+    <td colspan="3"><strong>模板引擎的默认属性支持，你也可以修改程序加上自己定义的属性<br />
+      这些属性可以应用在单标签上</strong></td>
+  </tr>
+  <tr>
+    <td>截取字符</td>
+    <td>len=&quot;数字&quot;</td>
+    <td>例如：{@title len=&quot;5&quot;} 这样将会截取@title前面5个字符作为输出</td>
+  </tr>
+  <tr>
+    <td>返回字符串长度</td>
+    <td>return=&quot;len&quot;</td>
+    <td>例如：{@content return=&quot;len&quot;} 将返回这个变量的字符串长度</td>
+  </tr>
+  <tr>
+    <td>清除HTML格式</td>
+    <td>return=&quot;clearhtml&quot;</td>
+    <td>例如：{@content return=&quot;clearhtml&quot;} 这样将会清除@content输出的HTML格式</td>
+  </tr>
+  <tr>
+    <td>清除所有空格换行</td>
+    <td>return=&quot;clearspace&quot;</td>
+    <td><p>例如：{@content return=&quot;clearspace&quot;} 这样将会清除@content输出的所有的空格和换行</p>
+    <p><strong>一个标签可以有多个return</strong></p></td>
+  </tr>
+  <tr>
+    <td>清除所有的格式</td>
+    <td>return=&quot;clearformat&quot;</td>
+    <td>这样只会保留文字，连HTML格式，换行什么都没有了</td>
+  </tr>
+  <tr>
+    <td>返回字符串的server.urlencode</td>
+    <td>return=&quot;urlencode&quot;</td>
+    <td>{@content return=&quot;urlencode&quot;} 将返回与ASP中server.urlencode(&quot;字符串&quot;)一致的结果</td>
+  </tr>
+  <tr>
+    <td>日期显示方式转换</td>
+    <td>dateformat=&quot;日期显示方式&quot;</td>
+    <td><p>年(yyyy|yy)月(mm|m)日(dd|d) 时(HH|H)分(MM|M)秒(SS|S)星期(w|W)</p>
+      <p>默认支持的方式有 <br />
+      dateformat=&quot;0&quot; 显示日期和/或时间。如果有日期部分，则将该部分显示为短日期格式。如果有时间部分，则将该部分显示为长时间格式。如果都存在，则显示所有部分<br />
+      dateformat=&quot;1&quot; 使用计算机区域设置中指定的长日期格式显示日期<br />
+      dateformat=&quot;2&quot; 使用计算机区域设置中指定的短日期格式显示日期<br />
+      dateformat=&quot;3&quot; 使用计算机区域设置中指定的时间格式显示时间<br />
+      dateformat=&quot;4&quot; 使用 24 小时格式 (hh:mm) 显示时间      </p>
+      <p>其他的日期格式化方式，可以参照下面的例子：<br />
+        例如：{@datetime dateformat=&quot;yyyy-mm-dd&quot;} 将会输出类似 2009-03-01这样的时间格式<br />
+      例如：{@datetime dateformat=&quot;yy年mm月dd日- 星期w&quot;} 将会输出类似 09年03月01日 - 星期？ 这样的时间格式</p></td>
+  </tr>
+  <tr>
+    <td colspan="3"><strong>模板类的使用例子,假设已经实例化到tpl</strong></td>
+  </tr>
+  <tr>
+    <td>类的功能</td>
+    <td>方法</td>
+    <td>说明</td>
+  </tr>
+  <tr>
+    <td>设置</td>
+    <td>&nbsp;</td>
+    <td><p>'全局配置信息(影响到全局的设置)<br />
+      'tpl.setCharset = &quot;utf-8&quot; '可选设置,默认是utf-8<br />
+      'tpl.setCacheType = 1 '可选设置,缓存开关,默认是关的<br />
+      'tpl.setCacheTimeOut = 30 '可选设置,缓存时间,单位是分钟,默认是10分钟<br />
+      tpl.setRoot = cStr(Server.MapPath(&quot;./&quot;))'必选设置,后面不带斜杠<br />
+      'tpl.setTemplatedir = &quot;/templates/&quot;'可选设置,设置模板目录<br />
+      'tpl.setCachedir = &quot;/cache/templates/&quot;'可选设置,设置缓存目录<br />
+  <strong>'tpl.setAbsPath = 1 </strong>'可选设置,模板绝对路径,默认是开的,作用是输出的时候将模板相对路径替换成绝对路径,已经是绝对路径或者描点等不受影响，此开关只是转换那些不是绝对路径的</p>
+      <p>页面设置(影响到单个页面的设置)<br /> 
+        'tpl.setPageTimeout=0'(v2.0新特性)可选设置，0=不生产前台页面缓存,&gt;0表示缓存的时间，单位是分钟 ，这个设置需要在页面开头，也就是在赋值之前设置，如果不设置，默认不缓存，建议数据有实时更新的不进行设置
+        <br />
+        tpl.setPath = &quot;index.html&quot;'可选,模板文件路径相对于模板目录<br />
+    <strong>tpl.setHtml</strong>=&quot;模板内容&quot;'可选，加载模板代码，如果不指定tpl.setPath,程序自动使用这里,反正 tpl.setPath/tpl.setHtml二选其一,使用这个之后模板缓存自动关闭(2010年1月支持)</p></td>
+  </tr>
+  <tr>
+    <td>加载并解析模板</td>
+    <td>tpl.load() </td>
+    <td>'加载模板，这个方法负责读取并且解析模板，<br />
+    当然，如果你不需要提取模板的参数，你可以放到.display()之前
+    <br />
+例如：<br />
+tpl.load() <br />
+tpl.display() <br /></td>
+  </tr>
+  <tr>
+    <td><strong>提取所有块标签</strong></td>
+    <td><strong>Set getblock = tpl.getblock</strong></td>
+    <td><p><strong>'获得块列表,返回dic对象，key = 循环块名称,items = 块的属性(数组，0=属性名称,1=值)</strong></p>
+    <p><strong>例子：<br />
+    Dim blockname,block<br />
+    Set block = tpl.getblock<br />
+    For blockname in block<br />
+     Response.Write(blockname)'//这样 就可以输出所有块的名称了<br />
+    Next
+    </strong></p></td>
+  </tr>
+  <tr>
+    <td><strong>指定块标签的属性</strong></td>
+    <td><strong>Set getattr = tpl.getattr</strong></td>
+    <td><p><strong>如果你想提取块名字是loop1的sql的内容 那么只要 getattr(&quot;loop1.sql&quot;)<br />
+    如果没有，将返回empty值，也就是空值</strong></p>
+    <p>(2010年1月支持) <strong>如果要提取单个标签的属性值</strong> 需要这样<strong>getattr(&quot;@标签名字.属性&quot;)</strong></p></td>
+  </tr>
+  <tr>
+    <td>标签赋值</td>
+    <td>tpl.add(&quot;@标签&quot;)=&quot;值&quot;</td>
+    <td>设置标签的值，也就是用这个值来替换掉{@标签}</td>
+  </tr>
+  <tr>
+    <td>块标签赋值</td>
+    <td>tpl.add(&quot;块标签&quot;)=记录集</td>
+    <td>设置循环块的值，这里我们只要给一个记录集，其他的输出，由模板去执行，也不用判断记录集是否为空。</td>
+  </tr>
+  <tr>
+    <td>显示输出</td>
+    <td>tpl.display()</td>
+    <td>'显示模板,将结果输出</td>
+  </tr>
+  <tr>
+    <td>清除缓存</td>
+    <td>tpl.ClearCache</td>
+    <td>如果设置了模板缓存，用这个将可以清除所有的模板缓存，对于不常修改的模板，我建议开启缓存。当然如果模板有改动，必须要清空了缓存，缓存才会重建</td>
+  </tr>
+  <tr>
+    <td>程序中获取输出结果</td>
+    <td>html = tpl.gethtml</td>
+    <td>将输出的结果赋值给html变量，这里的结果是已经是最后的输出结果</td>
+  </tr>
+  <tr>
+    <td>生成静态页面</td>
+    <td>tpl.OutPutPage(cStr(Server.MapPath(&quot;./&quot;))) = &quot;asdf.html&quot;</td>
+    <td>如果需要生成静态页面，使用 .OutPutPage(&quot;路径&quot;)=文件名<br /></td>
+  </tr>
+  <tr>
+    <td colspan="3"><strong>完整的类使用方法（来自demo.asp）</strong></td>
+  </tr>
+  <tr>
+    <td colspan="3"><p>&lt;script language=&quot;vbscript&quot; runat=&quot;server&quot;&gt;<br />
+      Response.Buffer = true<br />
+      Response.Expires = 0 <br />
+      Response.CacheControl = &quot;no-cache&quot; <br />
+      Response.AddHeader &quot;Pragma&quot;, &quot;No-Cache&quot;<br />
+      Response.CodePage=&quot;65001&quot;<br />
+      Response.Charset=&quot;utf-8&quot;<br />
+      &lt;/script&gt;<br />
+      &lt;!--#include file=&quot;class/Template.class.vbs.asp&quot; --&gt;<br />
+      &lt;!--#include file=&quot;class/DBOperate.class.vbs.asp&quot; --&gt;<br />
+      &lt;%<br />
+      '****************ACCESS数据库******************</p>
+      <p>Dim dbo<br />
+        Set dbo = New DBOperateClass<br />
+        dbo.setConnString = &quot;Provider=Microsoft.Jet.OLEDB.4.0;Data Source=&quot; &amp; server.mapPath(&quot;./test.mdb&quot;)<br />
+        <br />
+        '//-------这里是使用该类的例子<br />
+        Dim tpl<br />
+        Set tpl = New TemplateManageClass<br />
+        '配置信息<br />
+        'tpl.setCharset = &quot;utf-8&quot; '可选设置,默认是utf-8<br />
+        'tpl.setCacheType = 0 '可选设置,0=不需要缓存,1=文件缓存,2=内存缓存(只对文件模板(setPath的方式加载模板)有效)<br />
+        tpl.setRoot = cStr(Server.MapPath(&quot;./&quot;))'必选设置,后面不带斜杠<br />
+        'tpl.setTemplatedir = &quot;/templates/&quot;'可选设置,设置模板目录<br />
+        'tpl.setCachedir = &quot;/cache/templates/&quot;'可选设置,设置文件缓存目录<br />
+        <br />
+        tpl.setPath = &quot;index.html&quot;'可选,模板文件路径相对于模板目录<br />
+        tpl.setHtml = &quot;html模板内容&quot;'可选,模板路径与setHtml二选一<br />
+        tpl.load() '加载模板<br />
+        <br />
+        <br />
+        '输出的数据变量<br />
+        tpl.add(&quot;@title&quot;)=&quot;标题在这里&quot;<br />
+        tpl.add(&quot;@username&quot;)=&quot;taihom&quot;<br />
+        tpl.add(&quot;@name&quot;)=&quot;梅川内酷&quot;<br />
+        tpl.add(&quot;@password&quot;)=&quot;密码&quot;<br />
+        tpl.add(&quot;@runtime&quot;)=tpl.RunTimer<br />
+        tpl.add(&quot;@author&quot;)=tpl.Author</p>
+      <p> '获得循环块的参数<br />
+        Dim block,getattr<br />
+        Set block = tpl.getblock'获得块列表,返回dic对象，key = 循环块,items = 块的属性(数组，0=属性名称,1=值)<br />
+        Set getattr = tpl.getattr'获得属性列表,返回dic对象<br />
+        <br />
+        Dim sql1 : sql1 = getattr(&quot;loop1.sql&quot;)'获取loop1块的sql属性<br />
+        Dim sql2 : sql2 = getattr(&quot;loop2.sql&quot;)'获取loop2块的sql属性<br />
+        Dim sql3 : sql3 = getattr(&quot;loop3.sql&quot;)'获取loop3块的sql属性<br />
+        <br />
+        '循环块内容输出<br />
+        tpl.add(&quot;loop1&quot;) = dbo.execute(sql1)'直接给loop1块数据<br />
+        tpl.add(&quot;loop2&quot;) = dbo.execute(sql2)'直接给loop2块数据<br />
+        tpl.add(&quot;loop3&quot;) = dbo.execute(sql3)'直接给loop3块数据<br />
+        <br />
+        tpl.display()'显示模板<br />
+        <br />
+        '--------------清楚所有模板缓存<br />
+        'tpl.ClearCache<br />
+        <br />
+        '--------------获取输出的代码<br />
+        'html = tpl.gethtml<br />
+        <br />
+        '--------------将结果生成静态页面<br />
+        '如果需要生成静态页面，使用 .OutPutPage(&quot;路径&quot;)=文件名<br />
+        'tpl.OutPutPage(cStr(Server.MapPath(&quot;./&quot;))) = &quot;asdf.html&quot;<br />
+        <br />
+        dbo.close<br />
+        Set tpl = Nothing<br />
+        Set dbo = Nothing<br />
+        %&gt;</p></td>
+  </tr>
+  <tr>
+    <td colspan="3">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="3"><p>简便方法：</p>
+      <p>如果某个字段中有 title,name,hit,content 等这些字段<br />
+        模板中对应有<br />
+        {@title}<br />
+        {@name}<br />
+        {@hit}<br />
+      {@content}</p>
+      <p>假设 rs已经筛选好<br />
+        一般的做法是<br />
+        .add(&quot;@title&quot;)=rs(&quot;title&quot;)<br />
+        .add(&quot;@name&quot;)=rs(&quot;name&quot;)<br />
+        .add(&quot;@hit&quot;)=rs(&quot;hit&quot;)<br />
+      .add(&quot;@content&quot;)=rs(&quot;content&quot;)</p>
+      <p>有一个更加简单的方法</p>
+      <p>.add('@')=rs 数据集</p>
+      <p>这样，模板将会自动根据数据集的字段绑定数据<br />
+      </p>
+      <p>如果需要自己再进行处理可以先<br />
+        .add('@')=rs 数据集<br />
+        之后再进行自己处理，例如<br />
+        .add('@hit')= trim(rs(&quot;hit&quot;))<br />
+    这样就可以覆盖之前同名的标签数据</p></td>
+  </tr>
+</table>
+<p>代码在这里下载：<br />
+演示地址：<a href="http://www.taihom.com/templateclass/demo.asp">http://www.taihom.com/templateclass/demo.asp</a><br />
+模板地址：<a href="http://www.taihom.com/templateclass/templates">http://www.taihom.com/templateclass/templates</a><br />
+代码下载：<a href="http://www.taihom.com/templateclass/taihom.template.class.rar">http://www.taihom.com/templateclass/taihom.template.class.rar</a><br />
+</p>
+<script language="javascript" type="text/javascript" src="http://js.users.51.la/3514954.js"></script>
+</body>
+</html>
