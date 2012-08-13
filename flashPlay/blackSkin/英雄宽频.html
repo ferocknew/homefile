@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+		<title>The Video Player</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<script src="jquery.min.js" type="text/javascript"></script>
+		<script src="jquery.flash.js" type="text/javascript"></script>
+		<script type="text/javascript" src="swfobject.js"></script>
+		<script type="text/javascript">
+		var flashvars = {};
+		// video width
+		var videoWidth = 896;
+		// video height
+		var videoHeight = 496;
+		// Main Video Path
+		flashvars.videoFilePath = "videos/logo.mp4";
+		// Video buffer time (seconds)
+		flashvars.videoBufferTime = "10"
+		// automatically start video playing when first start video player. (yes/no)
+		flashvars.autoStartVideoPlay = "yes";
+		// Auto Repeat at end of the video. (yes/no)
+		flashvars.autoRepeat = "no";
+		// Video starting volume (Max: 100 Min: 0)
+		flashvars.videoStartVolume= "75";
+		// Show Advertisement video (yes/no)
+		flashvars.showAdvertisementVideo = "no";
+		// Advertisement Video Path
+		flashvars.advertisementVideoPath = "videos/adv_video.flv";
+		// Video Title Text
+		flashvars.titleTxt = "<font color='#9999FF' size='20'>SUPPORT HTML TAGS中文</font>";
+		// Video Description Text
+		flashvars.descriptionTxt = "Some description text will come here. <font color='#00FFFF'>Support HTML Tags!</font> <a href='javascript:alert(1);'>Click Here</a>";
+		flashvars.infoDisplay = "no";
+ 		// Show Logo
+		flashvars.logoDisplay = "yes";
+		// Logo Image Path
+		flashvars.logoImagePath = "images/logo.png";
+		// Logo Position
+		flashvars.logoPlacePosition = "top-right";
+		// Logo Margin Space
+		flashvars.logoMargin = "20";
+		// Logo Width
+		flashvars.logoWidth = "80";
+ 		// Logo Height
+		flashvars.logoHeight = "47";
+		// Logo Transparency Value (100 : Solid  50 : Semi Transparency)
+		flashvars.logoTransparency = "50";
+ 		// Define video bar color (blue, green, orange, purple, white, red)
+		// random : it will select color randomly
+		flashvars.videoBarColorName = "random";
+		// Define volume bar color (blue, green, orange, purple, white, red)
+		// random : it will select color randomly
+		flashvars.volumeBarColorName = "random";
+		// Show Cover Image
+		flashvars.coverImageDisplay = "yes";
+		// cover image path. You can use SWF, PNG, JPG or GIF
+		flashvars.coverImagePath = "images/cover_anim.swf";
+		// Auto Hide Control Panel and Mouse
+		flashvars.hideControlPanelAndMouse="yes"
+		// Auto Hide time (second)
+		flashvars.hideTime="4"
+		var params = {};
+
+			params.scale = "noscale";
+			params.allowfullscreen = "true";
+			params.salign = "tl";
+			params.bgcolor = "000000";
+
+		var attributes = {};
+		//swfobject.embedSWF("video_player8_flashvars.swf", "myContent", videoWidth, videoHeight, "9.0.0", false, flashvars, params, attributes);
+$(function(){
+	$("#flash").flash({
+			src: 'video_player8_flashvars.swf',
+			width: 896,
+			height: 496,
+			scale:'noscale',
+			allowfullscreen:true,
+			salign:'tl',
+			bgcolor:'000000',
+			flashvars:flashvars
+			});
+
+})
+		</script>
+	</head>
+	<body>
+	<div id="flash"></div>
+	</body>
+</html>
