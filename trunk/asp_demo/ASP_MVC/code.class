@@ -1,0 +1,4 @@
+doit()
+sub doit()
+Response.Write("sub code.asp")
+end sub

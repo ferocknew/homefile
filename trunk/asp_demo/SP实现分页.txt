@@ -1,0 +1,74 @@
+CREATE PROC sp_PageView
+@tbname     sysname,            --要分页显示的表名
+@FieldKey   nvarchar(1000),      --用于定位记录的主键(惟一键)字段,可以是逗号分隔的多个字段
+@PageCurrent int=1,              -->0表示要显示的页码,如果为0表示仅清理缓存数据的临时表,不返回数据,其他值代表重建缓存数据的临时表
+@PageSize   int=10,             --每页的大小(记录数)
+@FieldShow  nvarchar(1000)='',    --以逗号分隔的要显示的字段列表,如果不指定,则显示所有字段
+@Where     nvarchar(1000)='',    --查询条件
+@UserName  sysname='',         --调用查询的用户名
+@PageCount  int OUTPUT        --总页数
+AS
+SET NOCOUNT ON
+--检查对象是否有效
+IF OBJECT_ID(@tbname) IS NULL
+BEGIN
+	RAISERROR(N'对象"%s"不存在',1,16,@tbname)
+	RETURN
+END
+IF OBJECTPROPERTY(OBJECT_ID(@tbname),N'IsTable')=0
+	AND OBJECTPROPERTY(OBJECT_ID(@tbname),N'IsView')=0
+	AND OBJECTPROPERTY(OBJECT_ID(@tbname),N'IsTableFunction')=0
+BEGIN
+	RAISERROR(N'"%s"不是表、视图或者表值函数',1,16,@tbname)
+	RETURN
+END
+
+--分页字段检查
+IF ISNULL(@FieldKey,N'')=''
+BEGIN
+	RAISERROR(N'分页处理需要主键（或者惟一键）',1,16)
+	RETURN
+END
+
+--其他参数检查及规范
+IF ISNULL(@PageSize,0)<1 SET @PageSize=10
+IF ISNULL(@FieldShow,N'')=N'' SET @FieldShow=N'*'
+IF ISNULL(@Where,N'')=N''
+	SET @Where=N''
+ELSE
+	SET @Where=N'WHERE ('+@Where+N')'
+
+--分页数据缓存临时表状态检测
+DECLARE @tempTable sysname,@TempField sysname,@TempTableDate datetime
+SET @tempTable=QUOTENAME(N'##'
+	+RTRIM(LEFT(HOST_NAME(),50))
+	+N'_'+RTRIM(LEFT(CASE WHEN ISNULL(@UserName,N'')=N'' THEN SUSER_SNAME() ELSE @UserName END,50))
+	+N'_'+RTRIM(@tbname))
+
+SELECT @TempField=QUOTENAME(c.name),
+	@TempTableDate=DATEADD(Hour,1,o.crdate) --临时表的有效缓存时间为1小时,创建时间超过1小时的临时表会被重建
+FROM tempdb..sysobjects o,tempdb..syscolumns c
+WHERE o.id=c.id 
+	AND o.id=OBJECT_ID(N'tempdb..'+@tempTable)
+	AND c.status=0x80
+IF @@ROWCOUNT>0
+	IF ISNULL(@PageCurrent,0)<1 OR @TempTableDate0
+	SELECT @Field=LEFT(@FieldKey,CHARINDEX(N',',@FieldKey)-1),
+		@FieldKey=STUFF(@FieldKey,1,CHARINDEX(N',',@FieldKey),N''),
+		@Where=@Where
+			+N' AND a.'+@Field+N'=b.'+@Field,
+		@FieldShow=REPLACE(@FieldShow,@Field,N'a.'+@Field)
+SELECT @Where=STUFF(@Where+N' AND a.'+@FieldKey+N'=b.'+@FieldKey,1,5,N''),
+	@FieldShow=REPLACE(@FieldShow,@FieldKey,N'a.'+@FieldKey)
+IF @FieldShow=N'*' SET @FieldShow=N'a.*'
+
+--执行查询
+EXEC(N'SELECT '+@FieldShow
+	+N' FROM '+@tbname
+	+N' a,'+@tempTable
+	+N'b WHERE (b.'+@TempField
+	+N' BETWEEN '+@TopN
+	+N' AND '+@TopN1
+	+N') AND ('+@Where
+	+N') ORDER BY b.'+@TempField)
+

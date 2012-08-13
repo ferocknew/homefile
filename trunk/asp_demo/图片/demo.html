@@ -1,0 +1,81 @@
+<img src="pic.gif" border="0" width="300" height="260">
+<%
+'/////获取ShowImg.asp的绝对路径/////
+Dim curFile
+curFile=Server.mappath(Request.servervariables("PATH_INFO"))
+Dim curfilename,filename
+
+'/////图片相对路径（存于数据库中）
+cufilename=rs("ImgURL")
+
+'/////因为ShowImg.asp与images在同一目录，所以我们用instrrev获取images的路径/////
+filename=left(curFile,instrrev(curFile,"\"))&cufilename
+
+'/////建立GPS类实体/////
+Dim GetPicSize
+Set GetPicSize=new GPS
+Set fs=Server.CreateObject("Scripting.FileSystemObject")
+
+'/////获取图片类型/////
+Dim PicSuffixName
+PicSuffixName=fs.GetExtensionName(filename)
+Dim PD '//Picture Dimension
+Dim PWidth,PHeight
+Select Case PicSuffixName
+Case "gif","bmp","jpg","png":
+
+'/////调用GPS通用类中的GetImageSize函数获取图片尺寸/////
+PD=GetPicSize.GetImageSize(filename)
+PWidth=PD(1) '//获取图片宽度
+PHeight=PD(2) '//获取图片高度
+Case "swf"
+PD=GetPicSize.GetImageSize(filename)
+PWidth=PD(1) '//获取Flash宽度
+PHeight=PD(2) '//获取Flash高度
+Case Else
+End Select
+Set fs=Nothing
+Set GetPicSize=Nothing
+%>
+
+
+3.定义缩略图尺寸
+　　这部分代码就是仁者见仁，智者见智了。首先，我们需要规定缩略图显示尺寸范围，譬如：300X260，代码可以这样写：
+<%
+Dim PXWidth,PXHeight
+Dim Pp '//Proportion
+If PWidth=0 Or PWidth="" Then
+PXWidth=0
+PXHeight=0
+Else
+Pp=FormatNumber(PWidth/PHeight,2) '//长宽比
+End If
+If PWidth>=PHeight Then
+If PWidth>=300 Then
+PXWidth=300
+PXHeight=FormatNumber(300/Pp,0)
+Else
+PXWidth=PWidth
+PXHeight=PHeight
+End If
+Else
+If PHeight>=260 Then
+PXHeight=260
+PXWidth=FormatNumber(260*Pp,0)
+Else
+PXWidth=PWidth
+PXHeight=PHeight
+End If
+End If
+%>
+　　将上面的代码紧接第二步写下即可。调用时代码如下：
+<img src=<%=curfilename%> border="0" width=<%=PXWidth%>
+height=<%=PXHeight%>>
+　　至于图片格式可以用得到，图片尺寸可以写成
+<%
+response.write PXWidth&"X"&PXHeight
+%>
+　　图片大小可以用FSO.GetFileSize(filename)来实现，而点击次数可以简单地用SQL语句实现，具体编码就不再累述了。
+　　这样，一个无组件生成缩略图程序就写好了。
+
+http://www.net.cn/service/faq/softfaq/jiaocheng/200707/2348.html
