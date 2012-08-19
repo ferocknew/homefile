@@ -1,0 +1,21 @@
+
+<!-- body onload="alert(1)"-->
+<a href="temp1.html">123</a><!--/body-->
+<script src="1.5/jquery.min.1.5.js"></script>
+<script>
+javascript:window.history.forward(1);
+$(function(){
+	//alert(1);
+	//alert(document.referrer);
+
+	$("a").mouseover(function(){
+		window.status=$(this).html();
+	})
+	$("a").mousemove(function(){
+		window.status=$(this).html();
+	})
+	$("a").mousedown(function(){
+		window.status=$(this).html();
+	})
+})
+</script>
