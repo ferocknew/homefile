@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script src="js_jonah.js">
+</script>
+<script src="jq.checkinput.js">
+</script>
+<script>
+    function google(a, b, c) {
+        alert([a, b, c]);
+    }
+    t = partial(google, '_', 10, 20)
+    t('google')
+    $(function () {
+        $("#do_check").bind("click", function () {
+            alert($("#wooshoo_ipt").check().date(this.value));
+            alert($("#wooshoo_ipt").check().error);
+        });
+    })
+</script>
+<div id="test" style="height: 200px; width: 400px;">
+    你是猪！ 请输入：<input id="wooshoo_ipt" type="text" /><br />
+    <a id="do_check">执行检查</a>
+</div>
+</html>

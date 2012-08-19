@@ -1,0 +1,50 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
+<script src="flexigrid.pack.js"></script>
+<link href="css/flexigrid/flexigrid.css" rel="stylesheet" type="text/css" />
+<style>
+body,div,td{ font-size:12px;}
+</style>
+<table id="flex1" style="display:none"></table>
+<script>
+$("#flex1").flexigrid
+
+({
+
+    url: 'show_json.asp',
+
+    dataType: 'json',
+
+    colModel: [
+
+    { display: '编号', name: 'Unid', width: 40, align: 'center' },
+
+    { display: '姓名', name: 'CustomerName', width: 180, align: 'left' },
+
+    { display: '称号', name: 'Memo', width: 120, align: 'left' },
+
+    { display: '描述', name: 'Other', width: 130, align: 'left' }
+
+    ],
+
+    sortname: "Unid",
+
+    sortorder: "asc",
+
+    usepager: true,
+
+    striped: true,
+
+    title: '简单的应用',
+
+    useRp: false,
+	rpOptions: [10,15,20,25,40],
+
+    rp: 10,
+
+    width: 'auto',
+
+    height: 155
+
+})
+</script>
