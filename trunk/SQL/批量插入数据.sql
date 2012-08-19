@@ -1,0 +1,1 @@
+insert into suchshow (username,password) (SELECT username,password from suchshow)
