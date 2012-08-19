@@ -1,0 +1,613 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link href="files/css/reset.css" rel="stylesheet" type="text/css" />
+<link href="files/css/default.css" rel="stylesheet" type="text/css" />
+<link href="files/js/flow/main.css" rel="stylesheet" type="text/css" />
+<link href="files/js/codebase/GooPieChart.css"rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="files/js/jquery.min.js"></script>
+<script type="text/javascript" src="files/js/flow/jquery.flow.1.2.auto.js"></script>
+<!--[if IE]><script  type="text/javascript" src="files/js/codebase/excanvas.compiled.js"></script><![endif]-->
+<script type="text/javascript" src="files/js/codebase/GooFunc.js"></script>
+<script type="text/javascript" src="files/js/codebase/GooPieChart.js"></script>
+</head>
+
+<body>
+<div style="background-image:url(files/images/bg.jpg); height:792px; width:884px; margin-left:auto; margin-right:auto;">
+	<div style=" height:200px;"></div
+	><div style=" margin:40px; height:400px;"><div id="mycanvas"></div>
+	<input value="递交调查" type="button" id="action_do" /> <input value="查看结果" type="button" id="show_list" />
+		<div id="slides2" style="font-size:16px; font-weight:bolder;">
+			<div class="slide_wrap">
+				<p>No.1 <br /><br />我经常与他人交流以获取关于自己优缺点的信息，以促使自我提高。</p>
+				<p>&nbsp;</p>
+				<p><input type="radio" name="No1" value="1" /> 1分：非常不同意/非常不符合					</p>
+				<p><input type="radio" name="No1" value="2" /> 2分：不同意/不符合					</p>
+				<p><input type="radio" name="No1" value="3" /> 3分：比较不同意/比较不符合					</p>
+				<p><input type="radio" name="No1" value="4" /> 4分：比较同意/比较符合					</p>
+				<p><input type="radio" name="No1" value="5" /> 5分：同意/符合					</p>
+				<p><input type="radio" name="No1" value="6" /> 6分：非常同意/非常符合 </p>
+			</div>
+			<div class="slide_wrap"> No.2<br />
+				<br />
+				<div>当别人给我提反面意见时，我不会感到生气或沮丧
+					<p>&nbsp;</p>
+					<p>
+						<input type="radio" name="No2" value="1" />
+						1分：非常不同意/非常不符合 </p>
+					<p>
+						<input type="radio" name="No2" value="2" />
+						2分：不同意/不符合 </p>
+					<p>
+						<input type="radio" name="No2" value="3" />
+						3分：比较不同意/比较不符合 </p>
+					<p>
+						<input type="radio" name="No2" value="4" />
+						4分：比较同意/比较符合 </p>
+					<p>
+						<input type="radio" name="No2" value="5" />
+						5分：同意/符合 </p>
+					<p>
+						<input type="radio" name="No2" value="6" />
+						6分：非常同意/非常符合 </p>
+				</div></div>
+			<div class="slide_wrap"> No.3<br />
+				<br />
+			我非常乐于开放自我，与他人共享我的感受
+			<p>&nbsp;</p>
+			<p>
+				<input type="radio" name="No3" value="1" />
+				1分：非常不同意/非常不符合 </p>
+			<p>
+				<input type="radio" name="No3" value="2" />
+				2分：不同意/不符合 </p>
+			<p>
+				<input type="radio" name="No3" value="3" />
+				3分：比较不同意/比较不符合 </p>
+			<p>
+				<input type="radio" name="No3" value="4" />
+				4分：比较同意/比较符合 </p>
+			<p>
+				<input type="radio" name="No3" value="5" />
+				5分：同意/符合 </p>
+			<p>
+				<input type="radio" name="No3" value="6" />
+				6分：非常同意/非常符合 </p>
+			</div>
+			<div class="slide_wrap">No.4<br />
+				<br />
+			在完成工作任务的过程中，我常常能够将领导以及其他外在的要求与对自我的要求统一起来以提高工作的主动性与积极性
+			<p>&nbsp;</p>
+			<p>
+				<input type="radio" name="No4" value="1" />
+				1分：非常不同意/非常不符合 </p>
+			<p>
+				<input type="radio" name="No4" value="2" />
+				2分：不同意/不符合 </p>
+			<p>
+				<input type="radio" name="No4" value="3" />
+				3分：比较不同意/比较不符合 </p>
+			<p>
+				<input type="radio" name="No4" value="4" />
+				4分：比较同意/比较符合 </p>
+			<p>
+				<input type="radio" name="No4" value="5" />
+				5分：同意/符合 </p>
+			<p>
+				<input type="radio" name="No4" value="6" />
+				6分：非常同意/非常符合 </p>
+			</div>
+			<div class="slide_wrap">No.5<br />
+				<br />
+			在工作中，当我发觉与某个同事交流非常困难，我不会沮丧，我会对自己说&ldquo;没关系，继续努力，再想想办法，没有突破不了的障碍。&rdquo;
+			<p>&nbsp;</p>
+			<p>
+				<input type="radio" name="No5" value="1" />
+				1分：非常不同意/非常不符合 </p>
+			<p>
+				<input type="radio" name="No5" value="2" />
+				2分：不同意/不符合 </p>
+			<p>
+				<input type="radio" name="No5" value="3" />
+				3分：比较不同意/比较不符合 </p>
+			<p>
+				<input type="radio" name="No5" value="4" />
+				4分：比较同意/比较符合 </p>
+			<p>
+				<input type="radio" name="No5" value="5" />
+				5分：同意/符合 </p>
+			<p>
+				<input type="radio" name="No5" value="6" />
+				6分：非常同意/非常符合 </p>
+			</div>
+			<div class="slide_wrap">No.6<br />
+				<br />
+				<div>在处理不明确或不确定的问题时，我有较好的直觉。
+					<p>&nbsp;</p>
+					<p>
+						<input type="radio" name="No6" value="1" />
+						1分：非常不同意/非常不符合 </p>
+					<p>
+						<input type="radio" name="No6" value="2" />
+						2分：不同意/不符合 </p>
+					<p>
+						<input type="radio" name="No6" value="3" />
+						3分：比较不同意/比较不符合 </p>
+					<p>
+						<input type="radio" name="No6" value="4" />
+						4分：比较同意/比较符合 </p>
+					<p>
+						<input type="radio" name="No6" value="5" />
+						5分：同意/符合 </p>
+					<p>
+						<input type="radio" name="No6" value="6" />
+						6分：非常同意/非常符合 </p>
+				</div>
+			</div>
+			<div class="slide_wrap">No.7<br />
+				<br />
+			我有一套指导和约束自己行为的个人准则和原则
+			<p>&nbsp;</p>
+			<p>
+				<input type="radio" name="No7" value="1" />
+				1分：非常不同意/非常不符合 </p>
+			<p>
+				<input type="radio" name="No7" value="2" />
+				2分：不同意/不符合 </p>
+			<p>
+				<input type="radio" name="No7" value="3" />
+				3分：比较不同意/比较不符合 </p>
+			<p>
+				<input type="radio" name="No7" value="4" />
+				4分：比较同意/比较符合 </p>
+			<p>
+				<input type="radio" name="No7" value="5" />
+				5分：同意/符合 </p>
+			<p>
+				<input type="radio" name="No7" value="6" />
+				6分：非常同意/非常符合 </p>
+			</div>
+			<div class="slide_wrap">
+				<p>No.8<br />
+					<br />
+				在人际交往中，我往往能很清楚地分析自己与他人交往时可能出现的冲突和摩擦				</p>
+				<p>&nbsp;</p>
+				<p>
+					<input type="radio" name="No8" value="1" />
+					1分：非常不同意/非常不符合 </p>
+				<p>
+					<input type="radio" name="No8" value="2" />
+					2分：不同意/不符合 </p>
+				<p>
+					<input type="radio" name="No8" value="3" />
+					3分：比较不同意/比较不符合 </p>
+				<p>
+					<input type="radio" name="No8" value="4" />
+					4分：比较同意/比较符合 </p>
+				<p>
+					<input type="radio" name="No8" value="5" />
+					5分：同意/符合 </p>
+				<p>
+					<input type="radio" name="No8" value="6" />
+					6分：非常同意/非常符合 </p>
+			</div>
+			<div class="slide_wrap">No.9<br />
+				<br />
+				<div>
+					<p>只有当我自己认为做某件事有价值时，我才会要求别人这样做</p>
+					<p>&nbsp;</p>
+					<p>
+						<input type="radio" name="No9" value="1" />
+						1分：非常不同意/非常不符合 </p>
+					<p>
+						<input type="radio" name="No9" value="2" />
+						2分：不同意/不符合 </p>
+					<p>
+						<input type="radio" name="No9" value="3" />
+						3分：比较不同意/比较不符合 </p>
+					<p>
+						<input type="radio" name="No9" value="4" />
+						4分：比较同意/比较符合 </p>
+					<p>
+						<input type="radio" name="No9" value="5" />
+						5分：同意/符合 </p>
+					<p>
+						<input type="radio" name="No9" value="6" />
+						6分：非常同意/非常符合 </p>
+				</div>
+			</div>
+			<div class="slide_wrap">No.10<br />
+				<br />
+			每个星期，我总是保证自己有一段时间来静心地进行自我总结和自我反省
+			<p>&nbsp;</p>
+			<p>
+				<input type="radio" name="No10" value="1" />
+				1分：非常不同意/非常不符合 </p>
+			<p>
+				<input type="radio" name="No10" value="2" />
+				2分：不同意/不符合 </p>
+			<p>
+				<input type="radio" name="No10" value="3" />
+				3分：比较不同意/比较不符合 </p>
+			<p>
+				<input type="radio" name="No10" value="4" />
+				4分：比较同意/比较符合 </p>
+			<p>
+				<input type="radio" name="No10" value="5" />
+				5分：同意/符合 </p>
+			<p>
+				<input type="radio" name="No10" value="6" />
+				6分：非常同意/非常符合 </p>
+			</div>
+			<div class="slide_wrap">No.11<br />
+				<br />
+			在人际交往的过程中，对不同的人，即使是面对相同的问题，我也往往采取不同的沟通方式
+			<p>&nbsp;</p>
+			<p>
+				<input type="radio" name="No11" value="1" />
+				1分：非常不同意/非常不符合 </p>
+			<p>
+				<input type="radio" name="No11" value="2" />
+				2分：不同意/不符合 </p>
+			<p>
+				<input type="radio" name="No11" value="3" />
+				3分：比较不同意/比较不符合 </p>
+			<p>
+				<input type="radio" name="No11" value="4" />
+				4分：比较同意/比较符合 </p>
+			<p>
+				<input type="radio" name="No11" value="5" />
+				5分：同意/符合 </p>
+			<p>
+				<input type="radio" name="No11" value="6" />
+				6分：非常同意/非常符合 </p>
+			</div>
+			<div class="slide_wrap">No.12<br />
+				<br />
+			在工作问题方面，当他人误解了我或冒犯了我时，我能够做到平心静气地面对
+			<p>&nbsp;</p>
+			<p>
+				<input type="radio" name="No12" value="1" />
+				1分：非常不同意/非常不符合 </p>
+			<p>
+				<input type="radio" name="No12" value="2" />
+				2分：不同意/不符合 </p>
+			<p>
+				<input type="radio" name="No12" value="3" />
+				3分：比较不同意/比较不符合 </p>
+			<p>
+				<input type="radio" name="No12" value="4" />
+				4分：比较同意/比较符合 </p>
+			<p>
+				<input type="radio" name="No12" value="5" />
+				5分：同意/符合 </p>
+			<p>
+				<input type="radio" name="No12" value="6" />
+				6分：非常同意/非常符合 </p>
+			</div>
+			<div class="slide_wrap">No.13<br />
+				<br />
+			在与人交往的过程中，我能做到坦诚相待、信任对方
+			<p>&nbsp;</p>
+			<p>
+				<input type="radio" name="No13" value="1" />
+				1分：非常不同意/非常不符合 </p>
+			<p>
+				<input type="radio" name="No13" value="2" />
+				2分：不同意/不符合 </p>
+			<p>
+				<input type="radio" name="No13" value="3" />
+				3分：比较不同意/比较不符合 </p>
+			<p>
+				<input type="radio" name="No13" value="4" />
+				4分：比较同意/比较符合 </p>
+			<p>
+				<input type="radio" name="No13" value="5" />
+				5分：同意/符合 </p>
+			<p>
+				<input type="radio" name="No13" value="6" />
+				6分：非常同意/非常符合 </p>
+			</div>
+			<div class="slide_wrap">No.14<br />
+				<br />
+				<div>很乐意听取他人对我的评价与意见，并且我会认真分析，对合理的部分  我会做出相应的改进 &nbsp;
+					<p>&nbsp;</p>
+					<p>
+						<input type="radio" name="No14" value="1" />
+						1分：非常不同意/非常不符合 </p>
+					<p>
+						<input type="radio" name="No14" value="2" />
+						2分：不同意/不符合 </p>
+					<p>
+						<input type="radio" name="No14" value="3" />
+						3分：比较不同意/比较不符合 </p>
+					<p>
+						<input type="radio" name="No14" value="4" />
+						4分：比较同意/比较符合 </p>
+					<p>
+						<input type="radio" name="No14" value="5" />
+						5分：同意/符合 </p>
+					<p>
+						<input type="radio" name="No14" value="6" />
+						6分：非常同意/非常符合 </p>
+				</div>
+			</div>
+			<div class="slide_wrap">No.15<br />
+				<br />
+			我很强调自我的思想，不管是谁说的话，我都不会不加思考地盲从
+			<p>&nbsp;</p>
+			<p>
+				<input type="radio" name="No15" value="1" />
+				1分：非常不同意/非常不符合 </p>
+			<p>
+				<input type="radio" name="No15" value="2" />
+				2分：不同意/不符合 </p>
+			<p>
+				<input type="radio" name="No15" value="3" />
+				3分：比较不同意/比较不符合 </p>
+			<p>
+				<input type="radio" name="No15" value="4" />
+				4分：比较同意/比较符合 </p>
+			<p>
+				<input type="radio" name="No15" value="5" />
+				5分：同意/符合 </p>
+			<p>
+				<input type="radio" name="No15" value="6" />
+				6分：非常同意/非常符合 </p>
+			</div>
+			<div class="slide_wrap">No.16<br />
+				<br />
+			对于某个问题，当我几乎不加思考地做出了下意识的反应时，我马上能清楚地意识到这是潜意识在起作用，并能对之加以分析。
+			<p>&nbsp;</p>
+			<p>
+				<input type="radio" name="No16" value="1" />
+				1分：非常不同意/非常不符合 </p>
+			<p>
+				<input type="radio" name="No16" value="2" />
+				2分：不同意/不符合 </p>
+			<p>
+				<input type="radio" name="No16" value="3" />
+				3分：比较不同意/比较不符合 </p>
+			<p>
+				<input type="radio" name="No16" value="4" />
+				4分：比较同意/比较符合 </p>
+			<p>
+				<input type="radio" name="No16" value="5" />
+				5分：同意/符合 </p>
+			<p>
+				<input type="radio" name="No16" value="6" />
+				6分：非常同意/非常符合 </p>
+			</div>
+			<div class="slide_wrap">No.17<br />
+				<br />
+			当理想与现实存在差距时，我不会感到悲观、焦虑或怨气重重，我会想办法改变现状或修正自己的理想
+			<p>&nbsp;</p>
+			<p>
+				<input type="radio" name="No17" value="1" />
+				1分：非常不同意/非常不符合 </p>
+			<p>
+				<input type="radio" name="No17" value="2" />
+				2分：不同意/不符合 </p>
+			<p>
+				<input type="radio" name="No17" value="3" />
+				3分：比较不同意/比较不符合 </p>
+			<p>
+				<input type="radio" name="No17" value="4" />
+				4分：比较同意/比较符合 </p>
+			<p>
+				<input type="radio" name="No17" value="5" />
+				5分：同意/符合 </p>
+			<p>
+				<input type="radio" name="No17" value="6" />
+				6分：非常同意/非常符合 </p>
+			</div>
+			<div class="slide_wrap">
+				<p>No.18<br />
+					<br />
+					当我以一种方式成功地做好了一件事后，我也愿意再尝试其他的方式，看能否找到更便捷的途径。 </p>
+				<p>&nbsp;</p>
+				<p>
+					<input type="radio" name="No18" value="1" />
+					1分：非常不同意/非常不符合 </p>
+				<p>
+					<input type="radio" name="No18" value="2" />
+					2分：不同意/不符合 </p>
+				<p>
+					<input type="radio" name="No18" value="3" />
+					3分：比较不同意/比较不符合 </p>
+				<p>
+					<input type="radio" name="No18" value="4" />
+					4分：比较同意/比较符合 </p>
+				<p>
+					<input type="radio" name="No18" value="5" />
+					5分：同意/符合 </p>
+				<p>
+					<input type="radio" name="No18" value="6" />
+					6分：非常同意/非常符合 </p>
+			</div>
+			<div class="slide_wrap">No.19<br />
+				<br />
+			我常常能够很清醒地分析自我所处的环境状况。
+			<p>&nbsp;</p>
+			<p>
+				<input type="radio" name="No19" value="1" />
+				1分：非常不同意/非常不符合 </p>
+			<p>
+				<input type="radio" name="No19" value="2" />
+				2分：不同意/不符合 </p>
+			<p>
+				<input type="radio" name="No19" value="3" />
+				3分：比较不同意/比较不符合 </p>
+			<p>
+				<input type="radio" name="No19" value="4" />
+				4分：比较同意/比较符合 </p>
+			<p>
+				<input type="radio" name="No19" value="5" />
+				5分：同意/符合 </p>
+			<p>
+				<input type="radio" name="No19" value="6" />
+				6分：非常同意/非常符</p>
+			</div>
+			<div class="slide_wrap">No.20<br />
+				<br />
+				<div>我总是很清楚自己想要什么  。
+					<p>&nbsp;</p>
+					<p>
+						<input type="radio" name="No20" value="1" />
+						1分：非常不同意/非常不符合 </p>
+					<p>
+						<input type="radio" name="No20" value="2" />
+						2分：不同意/不符合 </p>
+					<p>
+						<input type="radio" name="No20" value="3" />
+						3分：比较不同意/比较不符合 </p>
+					<p>
+						<input type="radio" name="No20" value="4" />
+						4分：比较同意/比较符合 </p>
+					<p>
+						<input type="radio" name="No20" value="5" />
+						5分：同意/符合 </p>
+					<p>
+						<input type="radio" name="No20" value="6" />
+						6分：非常同意/非常符</p>
+				</div>
+			</div>
+		</div>
+		<div class="arrL" title="上一题">上一题</div>
+		<div class="arrR" title="下一题">下一题</div>
+		<div id="myController2">
+			<span class="jFlowControl2">1</span>
+			<span class="jFlowControl2">2</span>
+			<span class="jFlowControl2">3</span>
+			<span class="jFlowControl2">4</span>
+			<span class="jFlowControl2">5</span>
+			<span class="jFlowControl2">6</span>
+			<span class="jFlowControl2">7</span>
+			<span class="jFlowControl2">8</span>
+			<span class="jFlowControl2">9</span>
+			<span class="jFlowControl2">10</span>
+			<span class="jFlowControl2">11</span>
+			<span class="jFlowControl2">12</span>
+			<span class="jFlowControl2">13</span>
+			<span class="jFlowControl2">14</span>
+			<span class="jFlowControl2">15</span>
+			<span class="jFlowControl2">16</span>
+			<span class="jFlowControl2">17</span>
+			<span class="jFlowControl2">18</span>
+			<span class="jFlowControl2">19</span>
+			<span class="jFlowControl2">20</span>
+		</div>
+	</div>
+</div>
+</body>
+<script type="text/javascript">
+	$("#myController2").jFlow({
+		slides: "#slides2",
+		controller: ".jFlowControl2",
+		slideWrapper : "#jFlowSlide2",
+		width: "680px",
+		height: "275px",
+		prev: ".arrL",
+		next: ".arrR"
+	});
+
+	$(function(){
+		$("#action_do").click(function(){
+			if($(":radio[checked=true]").length<20){
+				alert("请不要遗漏题目！");
+			}else{
+				var _val=[];
+				var _Sum=0;
+				var _ajaxData;
+				$(":radio[checked=true]").each(function(){
+					_val.push($(this).val());
+					_Sum+=Number($(this).val());
+				});
+				_ajaxData={SumNum:_Sum,val:_val.toString()}
+                $.ajax({
+                    type: "POST",
+					dataType:"json",
+                    url: "webservice.asp",
+                    data: _ajaxData,
+                    success: function(json){
+                        if(!json.err){
+							alert("您的答案已经成功登记！");
+						}
+                    }
+                });
+			}
+		})
+
+        var canvas;
+        var property = {
+            con_width: 600,
+            con_height: 360,
+            canvas_width: 320,
+            canvas_height: 320,
+            canvas_top: 40,
+            canvas_left: 80,
+            core_x: 160,
+            core_y: 160,
+            radius: 150
+        }
+        var dataKind = {
+            note_width: 100,
+            note_height: 180,
+            note_top: 30,
+            note_left: 460,
+            sort_type: "v",//排列方式，v为垂直，h为水平
+            text_color: "#ffffff",//饼内的文字的颜色,可不填，默认为纯黑
+            items: [{
+                id: "c1",
+                color: "#ED1C24",
+                label: "100 分"
+            }, {
+                id: "c2",
+                color: "#F26522",
+                label: "92--99 分"
+            }, {
+                id: "c3",
+                color: "#F7941D",
+                label: "85--91分"
+            }, {
+                id: "c4",
+                color: "#F8F200",
+                label: "低于84分"
+            }]
+        };
+		/*
+        var data = [{
+            id: "c1",
+            num: 100
+        }, {
+            id: "c2",
+            num: 150
+        }, {
+            id: "c3",
+            num: 100
+        }, {
+            id: "c4",
+            num: 150
+        }];*/
+
+		$("#show_list").click(function(){
+			$("#action_do").hide();
+			$("#show_list").hide();
+			$("#slides2").hide();
+			$("#myController2").hide();
+			$(".arrL").hide();
+			$(".arrR").hide();
+			$("#mycanvas").parent().css("margin-top",15);
+			$.getJSON("webservice.asp",{act:"getsum"},function(json){
+                canvas = $.createGooPieChart($("#mycanvas"), property);
+                //canvas.setTitle("AlienWare10月销量", "份");
+                canvas.setDataKind(dataKind);
+                canvas.loadPieData(json.data, "num", "总销量: &d 份");
+			})
+
+		})
+	})
+</script>
+</html>
