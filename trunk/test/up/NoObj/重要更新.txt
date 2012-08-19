@@ -1,0 +1,19 @@
+<!--下面的内容是你必须要做的-->
+<div id="uploadContenter"></div>
+<iframe style="display:none;" name="AnUploader"></iframe>
+<script type="text/javascript">
+	var AjaxUp=new AjaxProcesser("uploadContenter","upload.asp","AnUploader",false);
+	//说明:本次更新重点封装了上传使用的JS类，上传控件表单完全自动生成
+	//var AjaxUp=new AjaxProcesser(Contenter,url,target,userStyle);
+	//参数说明:
+	//Contenter	字符串	上传控件的容器，程序自动给容易四面增加3px的padding
+	//url		字符串	表单要提交到的路径,可以包含参数，例如upload.asp?savepath=abc，主要是为了方便传递其他变量到上传页面(保存路径，保存方式等)
+	//target	字符串	表单要提交到的隐藏iframe的name属性
+	//userStyle	布尔值	如果为true，则表单的按钮以及文本框等控件的样式使用用户自定的样式，如果为false则使用类内部定义的样式
+</script>
+<!--你已经做完你的工作了-->
+
+
+上面是本次的更新~~
+本次更新重点封装了上传使用的JS类，上传控件表单完全自动生成
+用户只要做很少工作即可实现文件上传
