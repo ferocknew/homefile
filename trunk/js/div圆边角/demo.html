@@ -1,0 +1,21 @@
+<script src="../lib/jquery-1.3.2.min.js"></script>
+<script src="jquery.corner.js"></script>
+<script>
+$(function(){
+		   $("div").corner("10px")
+		   })
+</script>
+<div style="height:400px; width:300px; background-color:#00C; color:#FFF; border:#006 solid 1px;" id="div">1231321231</div>
+<a href="http://www.methvin.com/jquery/jq-corner-demo.html">http://www.methvin.com/jquery/jq-corner-demo.html</a>
+
+$(function(){
+    $("#tab ul li").each(function(){
+      $(this).width(this.clientWidth);
+      $(this).corner("top");
+    });
+});
+一个是width的溢出，一个是圆角的错误绘制定位。
+
+但要想让圆角正常显示，很简单，只要加入一行代码：$(this).width(this.clientWidth);
+
+将当前容器的宽度设为目前所显示出来的宽度。

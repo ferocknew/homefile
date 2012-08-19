@@ -1,0 +1,52 @@
+http://www.javaeye.com/topic/407351
+Js代码 
+//示例1  
+for(var i=0,a;a=["jack","tom","lily","andy"][i++];){  
+    console.log(a);  
+}  
+//示例2  
+var ary = ["jack","tom","lily","andy"];  
+for(var i=0,a;a=ary[i++];){  
+    console.log(a);  
+}  
+ 
+从firebug控制台能看到依次输出jack ，tom ，lily ，andy。这里有个疑问，示例1不知是否会每次都产生一个数组对象实例，如果是，数组很大时可能会有性能问题？
+ 
+这个技巧关键是这句
+a = ary[i++];
+ 
+js中数组实际上也是一个普通的Object。属于索引数组且并非“连续分配”内存的，因此索引方法并不会带来很高的效率。
+ 
+见http://snandy.javaeye.com/blog/276054
+ 
+中括号[i++]依然是一个普通对象取属性操作而已，试试看
+ 
+Js代码 
+var ary = ["jack","tom","lily","andy"];  
+for(var a in ary) {  
+    console.log(a);  
+}  
+ 
+firebug控制台输出0，1，2，3。证明了0，1，2，3的确是数组ary的属性。
+ 
+既然是ary的属性，那么是否可以通过点运算符（.）来存取呢？试试看
+ 
+Js代码 
+for(var j=0;j<ary.length;j++) {  
+   console.log(ary.j);//undefined  
+}  
+ 
+ 
+为什么示例1，2中用中括号[]存取就可以了呢？因为中括号ary[0]，ary[1]，ary[2]，ary[3]里的0，1，2，3是字符串类型的。如下：
+ 
+Js代码 
+for(var atr in ary) {  
+    console.log(atr + ":" + typeof atr);  
+}  
+ 输出如下：
+0:string
+1:string
+2:string
+3:string
+
+鲜为人知的便是：用中括号[]存取时，js引擎内部隐式的将数字转成了字符串。

@@ -1,0 +1,4 @@
+.marquee { border:1px solid #f1f1f1; width:100px; height:100px; overflow:hidden; line-height:30px; background:#f8f8f8;}
+.marquee li { width:100px; height:100px; text-align:center;}
+.marquee li img { margin:10px;}
+.level li { float:left;}

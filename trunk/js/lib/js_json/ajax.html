@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>无标题文档</title>
+		<style>
+			#show_test p{
+				font-size:12px;
+				border-bottom:#ccc solid 1px;
+			}
+			#show_items {
+				text-align:right;
+			}
+		</style>
+        <script src="jquery.1.4.1.min.js" type="text/javascript" language="javascript">
+        </script>
+        <script>
+			$.getScript("temp.js")
+        	var items=0;
+            $(function(){				
+				$("#show_test").empty();
+				insert_html(items);
+                $("#show_test").scroll(function(){
+                    var scrolltop = parseInt(this.scrollTop);
+                    var scrollheight = parseInt(this.clientHeight);
+                    var windowheight = parseInt(this.scrollHeight);
+					var scrolloffset=20;
+                    if (scrolltop + scrollheight == windowheight) {
+						$("#show_items").html("Loading more items...");
+                        setTimeout("insert_html();", 1000);
+                    }
+                });
+            })
+            function insert_html(){
+                $.getJSON("data.txt", function(json){
+                    var innerhtml = "";
+                    $(json.items).each(function(i){
+                        innerhtml += "<p>" + this.title + "</p>";
+                    });
+					items=items+json.items.length;
+                    $("#show_test").append(innerhtml);
+					$("#show_items").html("Loaded "+items+" Items");
+					//console.info(items);
+                });
+            }
+        </script>
+    </head>
+    <body>
+        <div style="height:300px; overflow:auto;" id="show_test">
+            <div style="height:1000px">
+            </div>
+        </div>
+		<div id="show_items"></div>
+    </body>
+</html>

@@ -1,0 +1,12 @@
+<img src="http://192.168.8.253/web/auto/update/201104/pre_20110414xsls.jpg" />
+<script src="../jquery.min.js"></script>
+<script>
+	$(window.onload)(function(){
+		var _tempImg=new Image();
+		_tempImg.src='http://365pub.pptv.com/files/images/update/pre_20110414xsls.jpg';
+		
+		$(_tempImg).load(function(){
+			$("img").attr("src",_tempImg.src);
+		})
+	})
+</script>
