@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link href="css/reset.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+body {
+	background-color:#e4e4e4;
+}
+</style>
+<script>
+var bOpened;
+var max_security_id='';
+function showMC(){
+	if(!bOpened){
+		var sAtr='status:no; help:no; dialogWidth:350px; dialogHeight:220px';
+		if(navigator.userAgent.indexOf('MSIE 7')==-1) sAtr='status:no; help:no; dialogWidth:350px; dialogHeight:250px';
+		oDlg=external.max_modelessDialog(max_security_id, 'dialog.htm', window, sAtr, window).document;
+		oDlg.write(sHtml);
+		oDlg.close();
+		bOpened=true;
+		document.getElementById('date').title='关闭今日黄历'
+	}
+	else{
+		oDlg.write('<script>window.close()<\/script>');
+		oDlg.close();
+		bOpened=false;
+		document.getElementById('date').title='打开今日黄历';
+	}
+}
+</script>
+</head>
+
+<body>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr style="cursor:pointer;">
+		<td><img src="images/icon.jpg" /></td>
+		<td onclick="showMC();">我</td>
+	</tr>
+</table>
+</body>
+</html>
