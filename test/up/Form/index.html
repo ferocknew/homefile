@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>Ajax无刷新上传--艾恩Asp无组件上传</title>
+    <script type="text/javascript" src="js/AnPlus.js"></script>
+    <script type="text/javascript" src="js/AjaxUploader.js"></script>
+    <style type="text/css">
+		INPUT {border:1px #ddd solid;background-color:#eee;padding:3px 3px 0px 3px;}
+		TEXTAREA {border:1px #ddd solid;background-color:#eee;padding:3px 3px 0px 3px;}
+    </style>
+</head>
+<body>
+<div style="line-height:17px;font-size:10pt;">表单和文件同时上传</div><hr />
+<form id="frm" method="post" action="upload.asp" enctype="multipart/form-data">
+标题 :<input type="text" name="title" /> <br />
+<div id="files">
+附件 :<input type="file" name="file1" /> <input type="button" onclick="addFile();" value="添加" /> <input type="button" onclick="delFile();" value="删除" /><br />
+</div>
+内容 :<textarea name="" cols="60" rows="6"></textarea> <br />
+&nbsp; &nbsp; &nbsp; <input type="button" value="提交" onclick="AjaxUp.Do();" />
+</form>
+	
+<!--下面的内容是你必须要做的-->
+<div id="uploadContenter"></div>
+<iframe style="display:none;" name="AnUploader"></iframe>
+<script type="text/javascript">
+	var fileCount=1;
+	var AjaxUp=new AjaxProcesser("frm","uploadContenter");
+	AjaxUp.target="AnUploader";
+	AjaxUp.savePath="_upload";  
+	function addFile(){
+		fileCount++;
+		var container=document.getElementById("files");
+		var txt=document.createTextNode("附件 :");
+		container.appendChild(txt);
+		var f=document.createElement("input");
+		f.type="file";
+		f.name="file" + fileCount;
+		container.appendChild(f);
+		container.appendChild(document.createElement("br"));
+	}
+	
+	function delFile(){
+		if(fileCount<2){alert("至少保留一个文件!");return;}
+		var container=document.getElementById("files");
+		container.removeChild(container.lastChild);
+		container.removeChild(container.lastChild);
+		container.removeChild(container.lastChild);
+		fileCount--;
+	}
+</script>
+<!--你已经做完你的工作了-->
+</body>
+</html>

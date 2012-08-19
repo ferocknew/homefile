@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>ASP上传文件的高级示例</title>
+	<script type="text/javascript" src="AienUpload/init.js"></script>
+</head>
+<body style="font-size:12px;">
+    <h4>ASP上传文件的高级示例</h4>
+    <hr />
+    文件:<input id="files" name="files" type="text" size="60" /> <input type="button" value="上传文件" onclick="showUpload(null,'files','uploads',6,null);" />
+	<br /><br /><br />
+	<div style="line-height:18px;">
+	调用说明:<br />
+	showUpload(boxCtrl,inputCtrl,upPath,maxCount,fn);<br /><br />
+	参数说明:<br />
+	boxCtrl:上传框绑定的控件的ID；若为null，则上传框显示在页面正中间<br />
+	inputCtrl:上传控件绑定的控件，一般为为本框的ID，必填<br />
+	upPath:文件上传目录，本目录是相对于upload.asp文件的;默认为upload;目录不存在则自动创建；<br />
+	maxCount:最大允许的上传数量；不设置为不限制上传数量<br />
+	fn:上传过程的回调函数,传递的参数为文件信息数组;设置本参数后inputCtrl参数将失效<br /><br />
+	举例说明:<br />showUpload(null,'files','',999,null);<br />
+	文本框显示在中间,返回值显示在ID为files的文本框里面，上传目录为默认值，最大允许上传999个，就是不限制了，没有定义回调函数；<br />
+	showUpload(this,'files','upfiles',2,function(obj){alert(obj.length);}); 把这句替换上面的再测试下就看到效果了
+	
+	<br />
+	<br />
+	<br />
+	<span style="color:red">1、index.html和upload.asp必须在同一目录；<br />2、upload.asp和AienUpload目录的相对位置不能改变;<br />3、AienUpload不能重命名<br />
+	</div>
+</body>
+</html>

@@ -1,0 +1,34 @@
+艾恩Ajax无刷新文件上传
+
+Ajax,无刷新,文件上传,asp
+
+本上传使用的类为本人原创上传类,经修改后用于无刷新上传(普通上传同样可用)
+
+详细显示上传过程,包括进度条，上传百分比，总上传数据大小，当前上传数据大小，上传进程时间等。。。
+
+
+具体进程信息请查看js/custom.js中的getInformation(info)中的信息对象的说明
+
+=======================================
+说明一点:
+本次给上传类增加了一个方法setApp,用来设置Application;
+调用方法Upload.setApp state,total,current,description
+参数说明:
+state--当前状态,建议取值请查看js/custom.js中的getInformation(info)函数中的状态说明
+total--总上传数据大小
+current--已上传数据大小
+description--描述,主要是在出现错误的时候使用，一般使用空值即可
+
+请保留upload.asp中对Application的设置(共四处,最后一处可选择性删除)
+
+想开启进度条功能,必须设置类对象的openProcesser=true
+例如
+set Upload=new AnUpLoad
+Upload.openProcesser=true  '打开进度条显示
+=======================================
+
+下载地址:http://www.ii-home.cn/detial.asp?id=175
+
+主页:http://www.ii-home.cn
+邮箱:zhanghuiguoanlige@126.com
+QQ:1034555083/417833272(不常用)
